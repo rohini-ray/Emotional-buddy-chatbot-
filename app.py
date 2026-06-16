@@ -27,8 +27,9 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 import google.generativeai as genai
 import os
 
-LLM_API_KEY = "AQ.Ab8RN6JtANw-bucw6xunyLHVWy4TpMHWaLuuylsmuzkM0av1hg" 
-print("LLM_API_KEY =", os.getenv("LLM_API_KEY"))
+ 
+LLM_API_KEY = os.getenv("LLM_API_KEY")
+print(LLM_API_KEY)
 print("Loaded key =", LLM_API_KEY)
 genai.configure(api_key=LLM_API_KEY)
 
