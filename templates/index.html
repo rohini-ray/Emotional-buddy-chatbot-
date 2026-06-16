@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotional Buddy AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="aurora"></div>
+
+<!-- Welcome Modal -->
+<div class="modal" id="modal">
+    <div class="modal-card">
+
+        <h2>🤗 Welcome</h2>
+
+        <p>
+            This is your safe space.
+            What should I call you?
+        </p>
+
+        <input
+            type="text"
+            id="nameInput"
+            placeholder="Enter your name"
+        >
+
+        <div class="modal-actions">
+
+            <button id="modalThemeBtn" class="ghost-btn">
+                🌙
+            </button>
+
+            <button id="startBtn" class="primary-btn">
+                Start →
+            </button>
+
+        </div>
+    </div>
+</div>
+
+<!-- Main App -->
+<div class="app">
+
+    <!-- Header -->
+    <header class="header">
+
+        <div class="brand">
+
+            <div class="logo">
+                🤗
+            </div>
+
+            <div>
+                <h1>Emotional Buddy AI</h1>
+                <p>
+                    Chat • Voice • Facial Emotion Detection
+                </p>
+            </div>
+
+        </div>
+
+        <div class="header-actions">
+
+            <div class="chip" id="whoChip">
+                Not started
+            </div>
+
+            <button id="themeBtn" class="icon-btn">
+                🌙
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- Main Content -->
+    <div class="content-grid">
+
+        <!-- LEFT PANEL -->
+        <section class="left-panel">
+
+            <!-- Emotion Dashboard -->
+            <div class="card">
+
+                <div class="card-header">
+                    <h3>📊 Emotion Dashboard</h3>
+                </div>
+
+                <div class="emotion-display">
+
+                    <div class="emotion-badge" id="emotionBadge">
+                        Neutral
+                    </div>
+
+                    <div class="confidence-box">
+                        Confidence:
+                        <span id="emotionConfidence">
+                            --
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Webcam -->
+            <div class="card">
+
+                <div class="card-header">
+                    <h3>📷 Facial Emotion</h3>
+                </div>
+
+                <video
+                    id="camera"
+                    autoplay
+                    playsinline
+                    muted
+                ></video>
+
+                <canvas
+                    id="captureCanvas"
+                    style="display:none;"
+                ></canvas>
+
+                <div class="camera-actions">
+
+                    <button
+                        id="startCameraBtn"
+                        class="primary-btn"
+                    >
+                        Start Camera
+                    </button>
+
+                    <button
+                        id="captureBtn"
+                        class="secondary-btn"
+                    >
+                        Capture Emotion
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Emotion History -->
+            <div class="card">
+
+                <div class="card-header">
+                    <h3>🧠 Emotion History</h3>
+                </div>
+
+                <div
+                    id="emotionHistory"
+                    class="history-list"
+                >
+
+                    <div class="history-empty">
+                        No emotions detected yet.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- RIGHT PANEL -->
+        <section class="right-panel">
+
+            <!-- Messages -->
+            <div class="messages" id="messages">
+
+                <div class="emptyState" id="emptyState">
+
+                    <b>I'm here.</b>
+
+                    <br><br>
+
+                    Start with:
+
+                    <br>
+
+                    <i>
+                        "Right now, I feel..."
+                    </i>
+
+                </div>
+
+                <div class="msgRow bot">
+
+                    <div class="avatar">
+                        🤗
+                    </div>
+
+                    <div class="bubbleWrap">
+
+                        <div class="bubble bot">
+
+                            Hi.
+
+                            I'm here to listen and support you.
+
+                            Tell me what's on your mind.
+
+                        </div>
+
+                        <div class="meta">
+
+                            <span>Buddy</span>
+
+                            <span class="dot"></span>
+
+                            <span id="bootTime"></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Intent Buttons -->
+            <div id="intentMount"></div>
+
+            <!-- Composer -->
+            <footer class="composer">
+
+                <div class="helperLine">
+
+                    <span
+                        id="recordStatus"
+                        class="hidden"
+                    >
+                        🔴 Recording...
+                    </span>
+
+                    <span>
+                        Enter = Send
+                    </span>
+
+                </div>
+
+                <div class="composerInner">
+
+                    <textarea
+                        id="userInput"
+                        placeholder="Type anything you're feeling..."
+                        disabled
+                    ></textarea>
+
+                    <div class="composerButtons">
+
+                        <button
+                            id="voiceBtn"
+                            class="ghost-btn"
+                            disabled
+                        >
+                            🎙️
+                        </button>
+
+                        <button
+                            id="sendBtn"
+                            class="primary-btn"
+                            disabled
+                        >
+                            Send ✨
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </footer>
+
+        </section>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

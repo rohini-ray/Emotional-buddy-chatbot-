@@ -671,13 +671,24 @@
     // Theme
     // ---------------------------
     function applyTheme(theme) {
-      document.documentElement.setAttribute("data-theme", theme);
-      localStorage.setItem("theme", theme);
-      const icon = theme === "dark" ? "☀️" : "🌙";
-      document.getElementById("themeBtn").textContent = icon;
-      document.getElementById("modalThemeBtn").textContent = icon;
-    }
 
+    if (theme === "light") {
+
+        document.body.classList.add("light");
+
+        // Show dark-mode button
+        themeBtn.textContent = "🌙";
+        modalThemeBtn.textContent = "🌙";
+    }
+    else {
+
+        document.body.classList.remove("light");
+
+        // Show light-mode button
+        themeBtn.textContent = "☀️";
+        modalThemeBtn.textContent = "☀️";
+    }
+}
     function toggleTheme() {
       const current = document.documentElement.getAttribute("data-theme") || "dark";
       applyTheme(current === "dark" ? "light" : "dark");
